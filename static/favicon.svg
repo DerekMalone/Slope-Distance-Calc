@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+	<line x1="8" y1="48" x2="56" y2="48" stroke="black" stroke-width="2"/>
+	<line x1="8" y1="48" x2="48" y2="20" stroke="black" stroke-width="2"/>
+	<circle cx="14" cy="48" r="5" stroke="black" fill="white"/>
+	<circle cx="14" cy="48" r="0.7" fill="black"/>
+	<circle cx="12" cy="48" r="0.7" fill="black"/>
+	<circle cx="16" cy="48" r="0.7" fill="black"/>
+	<circle cx="14" cy="46" r="0.7" fill="black"/>
+	<text x="20" y="44" font-size="6" font-family="Arial" fill="black">30°</text>
+	<line x1="28" y1="36" x2="40" y2="28" stroke="black" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+	<defs>
+		<marker id="arrowhead" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto">
+			<polygon points="0 0, 5 2.5, 0 5" fill="black"/>
+		</marker>
+	</defs>
+</svg>
