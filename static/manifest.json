@@ -1,7 +1,7 @@
 {
-    "name": "Your App Name",
-    "short_name": "YourApp", 
-    "description": "Your PWA description",
+    "name": "Slope Distance Calc",
+    "short_name": "SDC", 
+    "description": "Measures true slope distance from angle and slope distance",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
