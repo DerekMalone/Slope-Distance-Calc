@@ -16,7 +16,10 @@ const config = {
 		// adapter: adapter()
 		// New adapter below
 		adapter: adapter({
-			fallback: 'index.html'
+			pages: 'dist', // Output directory
+			assets: 'dist', // Assets directory
+			fallback: 'index.html',
+			precompress: false
 		})
 	}
 };
