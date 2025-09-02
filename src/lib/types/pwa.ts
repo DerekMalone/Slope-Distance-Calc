@@ -1,4 +1,3 @@
-// src/lib/types/pwa.ts
 export interface BeforeInstallPromptEvent extends Event {
 	readonly platforms: ReadonlyArray<string>;
 	readonly userChoice: Promise<{
