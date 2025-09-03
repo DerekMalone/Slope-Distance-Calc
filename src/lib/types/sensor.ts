@@ -28,6 +28,7 @@ export interface SensorData {
 	error: string | null;
 }
 
+
 // Acceleration data type
 export interface AccelerationData {
 	x: number;

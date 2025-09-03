@@ -1,16 +1,16 @@
+<!-- src/routes/test/+page.svelte -->
+<!-- TODO: Review gyro-2 issue ticket for next steps  -->
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
 	import {
 		sensorData,
-		requestSensorPermission,
-		startSensorListening,
+		stopListening,
+		startListening,
 		calculateSlopeDistance,
 		isIOSSafari
 	} from '$lib/utils/sensorUtils.js';
 	import type { SlopeResult } from '$lib/types/sensor';
-
+	
 	// Component state
-	let cleanupSensors: (() => void) | null = null;
 	let straightDistance = 100;
 	let slopeResult: SlopeResult | null = null;
 
@@ -29,35 +29,36 @@
 		slopeResult = calculateSlopeDistance(straightDistance, truePitch);
 	}
 
-	onDestroy(() => {
-		if (cleanupSensors) {
-			cleanupSensors();
-		}
-	});
+	// onDestroy(() => {
+	// 	if (cleanupSensors) {
+	// 		cleanupSensors();
+	// 	}
+	// });
 
-	// Handle permission request (must be from user click)
-	async function handleRequestPermission() {
-		const granted = await requestSensorPermission();
-		if (granted) {
-			startListening();
-		}
-	}
+	// // Handle permission request (must be from user click)
+	// async function handleRequestPermission() {
+	// 	// Need to do
+	// 	const granted = await requestSensorPermission();
+	// 	if (granted) {
+	// 		startListening();
+	// 	}
+	// }
 
-	// Start sensor listening
-	function startListening() {
-		if (cleanupSensors) {
-			cleanupSensors(); // Clean up existing listeners
-		}
-		cleanupSensors = startSensorListening();
-	}
+	// // Start sensor listening
+	// function startListening() {
+	// 	if (cleanupSensors) {
+	// 		cleanupSensors(); // Clean up existing listeners
+	// 	}
+	// 	cleanupSensors = startSensorListening();
+	// }
 
-	// Stop sensor listening
-	function stopListening() {
-		if (cleanupSensors) {
-			cleanupSensors();
-			cleanupSensors = null;
-		}
-	}
+	// // Stop sensor listening
+	// function stopListening() {
+	// 	if (cleanupSensors) {
+	// 		cleanupSensors();
+	// 		cleanupSensors = null;
+	// 	}
+	// }
 
 	// Helper functions
 	function formatAngle(angle: number | null) {
@@ -75,10 +76,6 @@
 		return '#ff4444';
 	}
 </script>
-
-<!-- src/routes/test/+page.svelte -->
-<!-- SimpleSlopeLevel.svelte -->
-import type {slopeResult} from '$lib/types/sensor.ts';
 
 <div class="slope-app">
 	<h1>Digital Level & Slope Calculator</h1>
@@ -103,7 +100,7 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 	</div>
 
 	<!-- Permission Button -->
-	{#if !hasPermission}
+	<!-- {#if !hasPermission}
 		<div class="button-section">
 			<button on:click={handleRequestPermission} class="permission-btn"> Enable Sensors </button>
 			<p class="note">
@@ -114,7 +111,7 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 				{/if}
 			</p>
 		</div>
-	{/if}
+	{/if} -->
 
 	<!-- Control Buttons -->
 	{#if hasPermission}
@@ -156,7 +153,8 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 				<p class="reading">{formatAngle(trueRoll)}</p>
 			</div>
 
-			<!-- Pitch Indicator -->
+			<!-- This is most likely unnecessary code -->
+			<!-- Pitch Indicator
 			<div class="pitch-display">
 				<h4>Pitch (Forward/Back Tilt)</h4>
 				<div class="pitch-meter">
@@ -166,7 +164,7 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 					></div>
 				</div>
 				<p class="reading">{formatAngle(truePitch)}</p>
-			</div>
+			</div> -->
 		</div>
 
 		<!-- Distance Calculator -->
@@ -310,9 +308,33 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 	}
 
 	.bubble-level,
-	.pitch-display {
+
+	/* Below is style for Pitch Indicator code block */
+	/* .pitch-display {
 		text-align: center;
 	}
+	.pitch-meter {
+		width: 100px;
+		height: 100px;
+		border: 3px solid #333;
+		border-radius: 50%;
+		margin: 15px auto;
+		position: relative;
+		background: radial-gradient(circle, #f0f0f0, #ddd);
+	}
+
+	.pitch-needle {
+		position: absolute;
+		top: 10px;
+		left: 50%;
+		width: 3px;
+		height: 35px;
+		background: #ff0000;
+		border-radius: 2px;
+		transform-origin: bottom center;
+		margin-left: -1.5px;
+		transition: transform 0.2s ease;
+	} */
 
 	.level-tube {
 		width: 200px;
@@ -350,29 +372,6 @@ import type {slopeResult} from '$lib/types/sensor.ts';
 		height: 100%;
 		background: #fff;
 		margin-left: -1px;
-	}
-
-	.pitch-meter {
-		width: 100px;
-		height: 100px;
-		border: 3px solid #333;
-		border-radius: 50%;
-		margin: 15px auto;
-		position: relative;
-		background: radial-gradient(circle, #f0f0f0, #ddd);
-	}
-
-	.pitch-needle {
-		position: absolute;
-		top: 10px;
-		left: 50%;
-		width: 3px;
-		height: 35px;
-		background: #ff0000;
-		border-radius: 2px;
-		transform-origin: bottom center;
-		margin-left: -1.5px;
-		transition: transform 0.2s ease;
 	}
 
 	.reading {
