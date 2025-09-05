@@ -36,6 +36,9 @@
 			</svg>
 		</div>
 	</div>
+	<!--  ! Need to update the path image to be attached to the line -->
+	<!-- Eye-level pointer line -->
+	<div class="pointer-line"></div>
 </div>
 
 <style>
@@ -89,5 +92,14 @@
 		width: 100px;
 		height: auto;
 		filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+	}
+
+	.pointer-line {
+		width: 66.67vw; /* 2/3 of screen width */
+		height: 3px;
+		background: #ff4757;
+		border-radius: 2px;
+		box-shadow: 0 2px 6px rgba(255, 71, 87, 0.4);
+		margin-top: 1rem;
 	}
 </style>
