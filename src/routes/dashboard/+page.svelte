@@ -9,7 +9,8 @@
 		isIOSSafari
 	} from '$lib/utils/sensorUtils.js';
 	import type { SlopeResult } from '$lib/types/sensor';
-	
+	import AngleDisplay from '$lib/components/AngleDisplay.svelte';
+
 	// Component state
 	let straightDistance = 100;
 	let slopeResult: SlopeResult | null = null;
@@ -129,29 +130,33 @@
 	<!-- Level Display -->
 	{#if isListening}
 		<!-- Level Status -->
-		<div class="level-status" style="color: {getLevelColor()}">
+		<!-- ! Un needed code -->
+		<!-- <div class="level-status" style="color: {getLevelColor()}">
 			{#if isLevel}
 				✅ LEVEL
 			{:else}
 				⚠️ {totalTilt.toFixed(1)}° off level
 			{/if}
-		</div>
+		</div> -->
 
 		<!-- Visual Level Indicators -->
 		<div class="level-displays">
+			<AngleDisplay {compassHeading} unit="°" />
+
 			<!-- Bubble Level (Roll) -->
-			<div class="bubble-level">
-				<h4>Roll (Left/Right Tilt)</h4>
-				<div class="level-tube">
+			<!-- <div class="bubble-level">
+				<h4>Roll (Left/Right Tilt)</h4> -->
+			<!-- <div class="level-tube">
 					<div
 						class="bubble"
 						style="transform: translateX({Math.max(-40, Math.min(40, trueRoll * 4))}px)"
 						class:centered={Math.abs(trueRoll) < 1}
 					></div>
 					<div class="center-mark"></div>
-				</div>
-				<p class="reading">{formatAngle(trueRoll)}</p>
-			</div>
+				</div> -->
+
+			<!-- <p class="reading">{formatAngle(trueRoll)}</p>
+			</div> -->
 
 			<!-- This is most likely unnecessary code -->
 			<!-- Pitch Indicator
