@@ -57,10 +57,8 @@ export async function checkPermissions(): Promise<boolean> {
 // Calculate angle from accelerometer data
 function calculateAngle(accelerationWithGravity: AccelerationData): number {
     const { x, y, z } = accelerationWithGravity;
-    // Calculate pitch (forward/backward tilt) - this is beta in landscape
-    // const pitch = Math.atan2(-x, Math.sqrt(y * y + z * z)) * (180 / Math.PI);
-	const pitch = Math.atan2(-y, Math.sqrt(x * x + z * z)) * (180 / Math.PI); // ! testing if correct
-	// const pitch = Math.atan2(x, Math.sqrt(y * y + z * z)) * (180 / Math.PI); // ! Next possible solution
+    // Calculate pitch (forward/backward tilt) - this is beta in landscape    
+	const pitch = Math.atan2(-y, Math.sqrt(x * x + z * z)) * (180 / Math.PI);
     return Math.round(pitch); // Round to nearest degree
 }
 
