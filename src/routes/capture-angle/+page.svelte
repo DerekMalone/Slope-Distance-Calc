@@ -1,4 +1,3 @@
-// routes/capture-angle/+page.svelte
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
