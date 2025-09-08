@@ -66,12 +66,15 @@ let currentAngle = 0;
 
     .arrow {
         position: absolute;
-        top: 2rem;
-        font-size: 3rem;
-        transform: rotate(0deg);
+        top: 1rem;
+        font-size: 20rem;
+        transform: rotate(270deg);
     }
 
     .angle-display {
+        position: relative;
+        bottom: 6rem;
+        left: 4rem;
         font-size: 4rem;
         font-weight: bold;
         background: rgba(255,255,255,0.1);
