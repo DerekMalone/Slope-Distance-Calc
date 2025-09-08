@@ -1,1 +1,0 @@
-// Slope distance math

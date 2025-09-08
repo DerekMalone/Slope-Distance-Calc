@@ -1,4 +1,9 @@
 <script lang="ts">
+	import Dashboard from '../routes/dashboard/+page.svelte'
+</script>
+<Dashboard />
+
+<!-- <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
 	// import DashboardPage from './dashboard/+page.svelte';
@@ -46,13 +51,13 @@
 	// 		cleanupSensors = null;
 	// 	}
 	// }
-</script>
+</script> -->
 
-<div>
+<!-- <div>
 	<h1>Welcome to SDC</h1>
-	<p>Approve permissions to continue</p>
+	<p>Approve permissions to continue</p> -->
 	<!-- Status Display -->
-	<div class="status-card">
+	<!-- <div class="status-card">
 		<h3>Status</h3>
 		<div class="status-grid">
 			<span>Platform:</span>
@@ -68,10 +73,10 @@
 		{#if error}
 			<p class="error">Error: {error}</p>
 		{/if}
-	</div>
+	</div> -->
 
 	<!-- Permission Button -->
-	{#if !hasPermission}
+	<!-- {#if !hasPermission}
 		<div class="button-section">
 			<button on:click={handleRequestPermission} class="permission-btn"> Enable Sensors </button>
 			<p class="note">
@@ -83,9 +88,9 @@
 			</p>
 		</div>
 	{/if}
-</div>
+</div> -->
 
-<style>
+<!-- <style>
 	.status-card {
 		background: #f8f9fa;
 		padding: 20px;
@@ -117,4 +122,4 @@
 		text-align: center;
 		margin: 20px 0;
 	}
-</style>
+</style> -->

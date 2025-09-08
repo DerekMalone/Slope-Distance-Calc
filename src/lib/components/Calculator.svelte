@@ -1,1 +1,0 @@
-<!-- Main calculation component -->
