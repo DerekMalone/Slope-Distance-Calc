@@ -35,7 +35,7 @@ export async function checkPermissions(): Promise<boolean> {
             }));
             
             return granted;
-        } else {
+		} else {
             rangefinderData.update(data => ({
                 ...data,
                 hasPermission: true,
@@ -57,10 +57,8 @@ export async function checkPermissions(): Promise<boolean> {
 // Calculate angle from accelerometer data
 function calculateAngle(accelerationWithGravity: AccelerationData): number {
     const { x, y, z } = accelerationWithGravity;
-    // Calculate pitch (forward/backward tilt) - this is beta in landscape
-    // const pitch = Math.atan2(-x, Math.sqrt(y * y + z * z)) * (180 / Math.PI);
-	const pitch = Math.atan2(-y, Math.sqrt(x * x + z * z)) * (180 / Math.PI); // ! testing if correct
-	// const pitch = Math.atan2(x, Math.sqrt(y * y + z * z)) * (180 / Math.PI); // ! Next possible solution
+    // Calculate pitch (forward/backward tilt) - this is beta in landscape    
+	const pitch = Math.atan2(-y, Math.sqrt(x * x + z * z)) * (180 / Math.PI);
     return Math.round(pitch); // Round to nearest degree
 }
 
@@ -89,7 +87,7 @@ export class AngleCapture {
         window.addEventListener('devicemotion', handleMotion);
         
         // Store cleanup function
-        this.intervalId = window.setTimeout(() => {}, 0); // Placeholder for cleanup tracking
+        this.intervalId = window.setTimeout(() => {}, 250); // Placeholder for cleanup tracking
         
         // Store the actual cleanup
         this.cleanup = () => {
@@ -116,10 +114,18 @@ export class AngleCapture {
 export function calculateTrueDistance(straightDistance: number, angle: number): number {
     if (angle === 0) return straightDistance;
     
-    const angleInRadians = Math.abs(angle) * (Math.PI / 180);
-    const trueDistance = straightDistance / Math.cos(angleInRadians);
+    const angleInRadians = angle * (Math.PI / 180);
+    let trueDistance: number;
     
-    return Math.round(trueDistance * 10) / 10; // Round to 1 decimal place
+    if (angle > 0) {
+        // Uphill: longer distance needed
+        trueDistance = straightDistance / Math.cos(angleInRadians);
+    } else {
+        // Downhill: shorter distance needed  
+        trueDistance = straightDistance * Math.cos(Math.abs(angleInRadians));
+    }
+    
+    return Math.round(trueDistance * 10) / 10;
 }
 
 // Update store with new measurement
