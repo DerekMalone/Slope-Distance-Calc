@@ -3,7 +3,6 @@ import { browser } from '$app/environment';
 import { type AccelerationData } from '../types/types';
 import { rangefinderData } from '../stores/rangefinder';
 
-
 export function isIOSSafari(): boolean {
     if (!browser) return false;
     // Check if the actual API exists instead of guessing browser
@@ -59,7 +58,9 @@ export async function checkPermissions(): Promise<boolean> {
 function calculateAngle(accelerationWithGravity: AccelerationData): number {
     const { x, y, z } = accelerationWithGravity;
     // Calculate pitch (forward/backward tilt) - this is beta in landscape
-    const pitch = Math.atan2(-x, Math.sqrt(y * y + z * z)) * (180 / Math.PI);
+    // const pitch = Math.atan2(-x, Math.sqrt(y * y + z * z)) * (180 / Math.PI);
+	const pitch = Math.atan2(-y, Math.sqrt(x * x + z * z)) * (180 / Math.PI); // ! testing if correct
+	// const pitch = Math.atan2(x, Math.sqrt(y * y + z * z)) * (180 / Math.PI); // ! Next possible solution
     return Math.round(pitch); // Round to nearest degree
 }
 
