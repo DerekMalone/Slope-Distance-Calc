@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { RangefinderData } from './types';
+import type { RangefinderData } from '../types/types';
 
 export const rangefinderData = writable<RangefinderData>({
     hasPermission: false,

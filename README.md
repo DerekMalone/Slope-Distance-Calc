@@ -21,6 +21,9 @@ Once you've created a project and installed dependencies with `npm install` (or 
 ```sh
 npm run dev
 
+# to test via ngrok tunnel 
+ngrok http 5173
+
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
